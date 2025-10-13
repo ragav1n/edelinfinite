@@ -34,7 +34,7 @@ export default function Services() {
       <div className="w-full px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-12 sm:mb-16">
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-3 sm:mb-4">
-            Our Systems
+            Our Services
           </h2>
           <div className="w-20 sm:w-24 h-1 bg-orange-500 mx-auto mb-4 sm:mb-6" />
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
