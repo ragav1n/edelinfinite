@@ -1,4 +1,4 @@
-import { ArrowRight, Play } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
 import { useState, useEffect } from 'react';
 
 interface HeroProps {
@@ -24,9 +24,9 @@ export default function Hero({ onNavigate }: HeroProps) {
   }, []);
 
   const stats = [
-    { value: '100+', label: 'Projects Delivered' },
-    { value: '15+', label: 'Years Experience' },
-    { value: '50+', label: 'Expert Team' },
+    { value: '50+', label: 'Projects Delivered' },
+    { value: '4+', label: 'Years Experience' },
+    { value: '25+', label: 'Expert Team' },
     { value: '2', label: 'Global Offices' }
   ];
 
@@ -76,11 +76,6 @@ export default function Hero({ onNavigate }: HeroProps) {
             >
               View Our Projects
               <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 group-hover:translate-x-1 transition-transform" />
-            </button>
-
-            <button className="group bg-white hover:bg-gray-50 text-gray-900 px-6 sm:px-8 py-3 sm:py-4 rounded-lg font-bold text-base sm:text-lg transition-all duration-300 flex items-center justify-center gap-2 border-2 border-gray-400 shadow-2xl hover:shadow-gray-400/30 hover:scale-105 relative z-30">
-              <Play className="w-4 h-4 sm:w-5 sm:h-5" />
-              Watch Demo
             </button>
           </div>
 

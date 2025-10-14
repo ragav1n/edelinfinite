@@ -45,7 +45,7 @@ export default function Header({ activeSection, onNavigate }: HeaderProps) {
                 e.currentTarget.src = '/image.png';
               }}
             />
-            <div className="hidden lg:block border-l-2 border-orange-500 pl-3 sm:pl-4">
+            <div className="hidden lg:block border-l border-orange-500 pl-3 sm:pl-4">
               <span className="text-xs sm:text-sm font-medium text-gray-700 italic">Precision in every panel</span>
             </div>
           </button>
@@ -55,7 +55,7 @@ export default function Header({ activeSection, onNavigate }: HeaderProps) {
               <button
                 key={item.id}
                 onClick={() => onNavigate(item.id)}
-                className={`text-xs sm:text-sm font-semibold transition-colors relative group ${
+                className={`text-sm sm:text-base font-semibold transition-colors relative group ${
                   activeSection === item.id
                     ? 'text-orange-500'
                     : 'text-gray-700 hover:text-orange-500'
