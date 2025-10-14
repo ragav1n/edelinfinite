@@ -100,20 +100,20 @@ export default function Hero({ onNavigate }: HeroProps) {
       </div>
 
       <div className="absolute bottom-4 sm:bottom-8 left-1/2 transform -translate-x-1/2 flex flex-col items-center gap-3 sm:gap-4">
-        <div className="flex gap-2">
+        <div className="flex gap-2 sm:gap-3">
           {heroImages.map((_, index) => (
             <button
               key={index}
               onClick={() => setCurrentImageIndex(index)}
-              className={`w-2 h-2 rounded-full transition-all duration-300 ${
-                index === currentImageIndex ? 'bg-orange-500 w-6 sm:w-8' : 'bg-white/50 hover:bg-white/80'
+              className={`w-3 h-3 sm:w-2 sm:h-2 rounded-full transition-all duration-300 ${
+                index === currentImageIndex ? 'bg-orange-500 w-8 sm:w-6 sm:h-6' : 'bg-white/50 hover:bg-white/80 w-3 h-3 sm:w-2 sm:h-2'
               }`}
             />
           ))}
         </div>
         <div className="animate-bounce">
-          <div className="w-4 sm:w-6 h-8 sm:h-10 border-2 border-white/50 rounded-full flex items-start justify-center p-1 sm:p-2">
-            <div className="w-1 sm:w-1.5 h-2 sm:h-3 bg-white/50 rounded-full" />
+          <div className="w-6 h-10 sm:w-4 sm:h-8 border-2 border-white/50 rounded-full flex items-start justify-center p-1 sm:p-2">
+            <div className="w-1.5 h-3 sm:w-1 sm:h-2 bg-white/50 rounded-full" />
           </div>
         </div>
       </div>

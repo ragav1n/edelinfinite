@@ -10,6 +10,16 @@ export default function Projects({ onNavigate }: ProjectsProps) {
 
   const featuredProjects = [
     {
+      title: 'Helix Tuvilu',
+      location: 'Chennai',
+      status: 'Completed',
+      system: 'Edel Virtis Vertical Glazing System',
+      area: '',
+      image: '/helix.png',
+      tagline: 'Edel Virtis — Vertical Precision, Defined by Light.',
+      description: 'A refined expression of transparency and precision, the Helix Tuvilu features Edelinfinite\'s Edel Virtis system—engineered to span uninterrupted heights with seamless vertical rhythm. Designed for clarity and strength, the façade integrates slender aluminum profiles and high-performance glazing to create a luminous, modern envelope that redefines workplace architecture.'
+    },
+    {
       title: 'TIDCO Fintech Tower',
       location: 'Chennai',
       status: 'Ongoing',
@@ -113,7 +123,7 @@ export default function Projects({ onNavigate }: ProjectsProps) {
           </p>
         </div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 mb-16">
           {featuredProjects.map((project, index) => (
             <div
               key={index}
@@ -158,52 +168,52 @@ export default function Projects({ onNavigate }: ProjectsProps) {
 
         {/* Project Detail Modal */}
         {selectedProject !== null && (
-          <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm" onClick={() => setSelectedProject(null)}>
-            <div className="relative bg-white rounded-2xl max-w-5xl w-full max-h-[90vh] overflow-y-auto shadow-2xl" onClick={(e) => e.stopPropagation()}>
+          <div className="fixed inset-0 z-50 flex items-center justify-center p-2 sm:p-4 bg-black/80 backdrop-blur-sm" onClick={() => setSelectedProject(null)}>
+            <div className="relative bg-white rounded-xl sm:rounded-2xl w-full max-w-[95vw] sm:max-w-2xl md:max-w-4xl lg:max-w-5xl max-h-[90vh] overflow-y-auto shadow-2xl" onClick={(e) => e.stopPropagation()}>
               <button
                 onClick={() => setSelectedProject(null)}
-                className="sticky top-4 float-right mr-4 z-10 bg-black/50 hover:bg-black text-white p-2 rounded-full transition-colors"
+                className="sticky top-2 sm:top-4 float-right right-2 sm:mr-4 z-10 bg-black/50 hover:bg-black text-white p-2 rounded-full transition-colors"
               >
-                <X className="w-6 h-6" />
+                <X className="w-5 h-5 sm:w-6 sm:h-6" />
               </button>
               
-              <div className="relative overflow-hidden rounded-t-2xl bg-gray-900">
+              <div className="relative overflow-hidden rounded-t-xl bg-gray-900">
                 <img
                   src={featuredProjects[selectedProject].image}
                   alt={featuredProjects[selectedProject].title}
-                  className="w-full h-auto max-h-[65vh] object-cover"
+                  className="w-full h-auto max-h-[40vh] sm:max-h-[50vh] md:max-h-[65vh] object-cover"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
-                <div className="absolute bottom-0 left-0 right-0 p-6 md:p-8 text-white">
-                  <div className="inline-block bg-orange-500 text-white text-sm font-bold px-4 py-2 rounded-full mb-4">
+                <div className="absolute bottom-0 left-0 right-0 p-4 sm:p-6 md:p-8 text-white">
+                  <div className="inline-block bg-orange-500 text-white text-xs sm:text-sm font-bold px-3 sm:px-4 py-1 sm:py-2 rounded-full mb-3 sm:mb-4">
                     {featuredProjects[selectedProject].status}
                   </div>
-                  <h2 className="text-3xl md:text-5xl font-bold mb-2">
+                  <h2 className="text-2xl sm:text-3xl md:text-5xl font-bold mb-2">
                     {featuredProjects[selectedProject].title}
                   </h2>
-                  <div className="flex items-center gap-4 text-lg">
+                  <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4 text-base sm:text-lg">
                     <div className="flex items-center gap-2">
-                      <MapPin className="w-5 h-5" />
+                      <MapPin className="w-4 h-4 sm:w-5 sm:h-5" />
                       <span>{featuredProjects[selectedProject].location}</span>
                     </div>
                   </div>
                 </div>
               </div>
 
-              <div className="p-8 md:p-12">
-                <div className="mb-8">
-                  <h3 className="text-2xl font-bold text-black mb-2">
+              <div className="p-4 sm:p-6 md:p-8 lg:p-12">
+                <div className="mb-6 sm:mb-8">
+                  <h3 className="text-xl sm:text-2xl font-bold text-black mb-2">
                     {featuredProjects[selectedProject].system}
                     {featuredProjects[selectedProject].area && ` | ${featuredProjects[selectedProject].area}`}
                   </h3>
-                  <p className="text-xl italic text-gray-600 border-l-4 border-orange-500 pl-4 py-2">
+                  <p className="text-lg sm:text-xl italic text-gray-600 border-l-4 border-orange-500 pl-3 sm:pl-4 py-2">
                     {featuredProjects[selectedProject].tagline}
                   </p>
                 </div>
 
-                <div className="prose prose-lg max-w-none">
+                <div className="prose prose-sm sm:prose-lg max-w-none">
                   {featuredProjects[selectedProject].description.split('\n\n').map((paragraph, idx) => (
-                    <p key={idx} className="text-gray-700 mb-4 leading-relaxed">
+                    <p key={idx} className="text-gray-700 mb-3 sm:mb-4 leading-relaxed text-sm sm:text-base">
                       {paragraph}
                     </p>
                   ))}

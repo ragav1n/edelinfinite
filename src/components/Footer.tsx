@@ -31,13 +31,20 @@ export default function Footer({ onNavigate }: FooterProps) {
           <div>
             <h4 className="font-bold text-lg mb-4">Quick Links</h4>
             <ul className="space-y-2">
-              {['Home', 'About Us', 'Services', 'Systems', 'Projects', 'Contact Us'].map((item) => (
-                <li key={item}>
+              {[
+                { label: 'Home', id: 'home' },
+                { label: 'About Us', id: 'about' },
+                { label: 'Services', id: 'services' },
+                { label: 'Systems', id: 'systems' },
+                { label: 'Projects', id: 'projects' },
+                { label: 'Contact Us', id: 'contact' }
+              ].map((item) => (
+                <li key={item.label}>
                   <button
-                    onClick={() => onNavigate(item.toLowerCase().replace(' ', ''))}
+                    onClick={() => onNavigate(item.id)}
                     className="text-gray-400 hover:text-orange-500 transition-colors text-sm"
                   >
-                    {item}
+                    {item.label}
                   </button>
                 </li>
               ))}
@@ -87,8 +94,8 @@ export default function Footer({ onNavigate }: FooterProps) {
               {currentYear} Edelinfinite Systems Private Limited. All rights reserved.
             </p>
             <div className="flex gap-6 text-sm text-gray-400">
-              <button className="hover:text-orange-500 transition-colors">Privacy Policy</button>
-              <button className="hover:text-orange-500 transition-colors">Terms of Service</button>
+              <a href="#" className="hover:text-orange-500 transition-colors">Privacy Policy</a>
+              <a href="#" className="hover:text-orange-500 transition-colors">Terms of Service</a>
             </div>
           </div>
         </div>

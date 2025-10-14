@@ -1,5 +1,6 @@
 import { Mail, Phone, MapPin, Send, Linkedin, Facebook, Twitter, Instagram } from 'lucide-react';
 import { useState } from 'react';
+import emailjs from '@emailjs/browser';
 
 export default function Contact() {
   const [formData, setFormData] = useState({
@@ -17,14 +18,44 @@ export default function Contact() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
+    setSubmitStatus('idle');
 
-    await new Promise(resolve => setTimeout(resolve, 1500));
+    const env = typeof process !== 'undefined' ? process.env : {};
+    const serviceId = env.REACT_APP_EMAILJS_SERVICE_ID;
+    const templateId = env.REACT_APP_EMAILJS_TEMPLATE_ID;
+    const publicKey = env.REACT_APP_EMAILJS_PUBLIC_KEY;
 
-    setIsSubmitting(false);
-    setSubmitStatus('success');
-    setFormData({ name: '', email: '', phone: '', company: '', subject: '', message: '' });
+    if (!serviceId || !templateId || !publicKey) {
+      console.error('Missing EmailJS configuration. Please check your environment variables.');
+      setSubmitStatus('error');
+      setIsSubmitting(false);
+      return; // Early return for missing config
+    }
 
-    setTimeout(() => setSubmitStatus('idle'), 5000);
+    try {
+      await emailjs.send(
+        serviceId,
+        templateId,
+        {
+          from_name: formData.name,
+          from_email: formData.email,
+          phone: formData.phone,
+          company: formData.company,
+          subject: formData.subject,
+          message: formData.message,
+        },
+        publicKey
+      );
+      setSubmitStatus('success');
+      setFormData({ name: '', email: '', phone: '', company: '', subject: '', message: '' });
+      setTimeout(() => setSubmitStatus('idle'), 5000);
+    } catch (error) {
+      console.error('EmailJS error:', error);
+      setSubmitStatus('error');
+      setTimeout(() => setSubmitStatus('idle'), 5000);
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
@@ -71,6 +102,12 @@ export default function Contact() {
             {submitStatus === 'success' && (
               <div className="bg-green-50 border border-green-200 text-green-800 px-6 py-4 rounded-lg mb-6">
                 Thank you for your message! We'll get back to you soon.
+              </div>
+            )}
+
+            {submitStatus === 'error' && (
+              <div className="bg-red-50 border border-red-200 text-red-800 px-6 py-4 rounded-lg mb-6">
+                Failed to send message. Please check your details and try again.
               </div>
             )}
 
