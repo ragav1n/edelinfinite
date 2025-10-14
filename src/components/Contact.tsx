@@ -95,8 +95,8 @@ export default function Contact() {
           </p>
         </div>
 
-        <div className="grid lg:grid-cols-3 gap-8 mb-16">
-          <div className="lg:col-span-2">
+        <div className="grid lg:grid-cols-3 gap-8 mb-16 items-stretch">
+          <div className="lg:col-span-2 flex flex-col">
             <h3 className="text-2xl font-bold text-black mb-8">Send us a Message</h3>
 
             {submitStatus === 'success' && (
@@ -202,7 +202,7 @@ export default function Contact() {
                   value={formData.message}
                   onChange={handleChange}
                   required
-                  rows={6}
+                  rows={5}
                   className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-orange-500 focus:ring-2 focus:ring-orange-200 outline-none transition-all resize-none"
                 />
               </div>
@@ -224,61 +224,69 @@ export default function Contact() {
             </form>
           </div>
 
-          <div className="space-y-6">
+          <div className="flex flex-col h-full">
             <h3 className="text-2xl font-bold text-black mb-6">Contact Info</h3>
 
-            <div className="bg-white p-6 rounded-xl shadow-md border border-gray-100">
-              <h4 className="font-bold text-lg text-black mb-4 flex items-center gap-2">
-                <MapPin className="w-5 h-5 text-orange-500" />
-                India Office
-              </h4>
-              <p className="text-gray-700 leading-relaxed text-sm">
-                Edelinfinite Systems Pvt Ltd<br />
-                #1, Hennur Road, Geddalahalli<br />
-                BDS Garden – Bangalore 560077<br />
-                <span className="flex items-center gap-2 mt-2">
-                  <Phone className="w-4 h-4 text-orange-500" />
-                  080-46990561
-                </span>
-              </p>
-            </div>
+            <div className="space-y-6 flex-1 flex flex-col justify-between">
+              <div className="space-y-6">
+                <div className="bg-white p-6 rounded-xl shadow-md border border-gray-100">
+                  <div className="grid md:grid-cols-2 gap-6">
+                    <div>
+                      <h4 className="font-bold text-lg text-black mb-4 flex items-center gap-2">
+                        <MapPin className="w-5 h-5 text-orange-500" />
+                        India Office
+                      </h4>
+                      <div className="text-gray-700 text-sm space-y-1">
+                        <p className="font-semibold">Edelinfinite Systems Pvt Ltd</p>
+                        <p>#1, Hennur Road, Geddalahalli</p>
+                        <p>BDS Garden – Bangalore 560077</p>
+                        <p className="flex items-center gap-2">
+                          <Phone className="w-4 h-4 text-orange-500" />
+                          080-46990561
+                        </p>
+                      </div>
+                    </div>
 
-            <div className="bg-white p-6 rounded-xl shadow-md border border-gray-100">
-              <h4 className="font-bold text-lg text-black mb-4 flex items-center gap-2">
-                <MapPin className="w-5 h-5 text-orange-500" />
-                Germany Office
-              </h4>
-              <p className="text-gray-700 leading-relaxed text-sm">
-                Edelinfinite GmBH<br />
-                Tölzer Straße 11<br />
-                82031, Grünwald
-              </p>
-            </div>
+                    <div>
+                      <h4 className="font-bold text-lg text-black mb-4 flex items-center gap-2">
+                        <MapPin className="w-5 h-5 text-orange-500" />
+                        Germany Office
+                      </h4>
+                      <div className="text-gray-700 text-sm space-y-1">
+                        <p className="font-semibold">Edelinfinite GmBH</p>
+                        <p>Tölzer Straße 11</p>
+                        <p>82031, Grünwald</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
 
-            <div className="bg-white p-6 rounded-xl shadow-md border border-gray-100">
-              <h4 className="font-bold text-lg text-black mb-4 flex items-center gap-2">
-                <Mail className="w-5 h-5 text-orange-500" />
-                Email
-              </h4>
-              <a
-                href="mailto:info@edel-infinite.de"
-                className="text-orange-500 hover:text-orange-600 font-semibold text-sm"
-              >
-                info@edel-infinite.de
-              </a>
-            </div>
-
-            <div className="bg-white p-6 rounded-xl shadow-md border border-gray-100">
-              <h4 className="font-bold text-lg text-black mb-4">Follow Us</h4>
-              <div className="flex gap-3">
-                {[Linkedin, Facebook, Twitter, Instagram].map((Icon, index) => (
-                  <button
-                    key={index}
-                    className="w-10 h-10 bg-black hover:bg-orange-500 text-white rounded-lg flex items-center justify-center transition-all duration-300 hover:scale-110"
+                <div className="bg-white p-6 rounded-xl shadow-md border border-gray-100">
+                  <h4 className="font-bold text-lg text-black mb-4 flex items-center gap-2">
+                    <Mail className="w-5 h-5 text-orange-500" />
+                    Email
+                  </h4>
+                  <a
+                    href="mailto:info@edel-infinite.de"
+                    className="text-orange-500 hover:text-orange-600 font-semibold text-sm"
                   >
-                    <Icon className="w-4 h-4" />
-                  </button>
-                ))}
+                    info@edel-infinite.de
+                  </a>
+                </div>
+              </div>
+
+              <div className="bg-white p-6 rounded-xl shadow-md border border-gray-100 mt-auto">
+                <h4 className="font-bold text-lg text-black mb-4">Follow Us</h4>
+                <div className="flex gap-3">
+                  {[Linkedin, Facebook, Twitter, Instagram].map((Icon, index) => (
+                    <button
+                      key={index}
+                      className="w-10 h-10 bg-black hover:bg-orange-500 text-white rounded-lg flex items-center justify-center transition-all duration-300 hover:scale-110"
+                    >
+                      <Icon className="w-4 h-4" />
+                    </button>
+                  ))}
+                </div>
               </div>
             </div>
           </div>
