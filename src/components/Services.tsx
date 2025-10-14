@@ -42,11 +42,13 @@ export default function Services() {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 max-w-7xl mx-auto">
           {services.map((service, index) => (
             <div
               key={index}
-              className="group bg-white p-8 rounded-xl shadow-sm hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 border border-gray-100"
+              className={`group bg-white p-8 rounded-xl shadow-sm hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 border border-gray-100 ${
+                index >= 3 ? 'max-w-md mx-auto' : ''
+              }`}
             >
               <div className="w-16 h-16 bg-black group-hover:bg-orange-500 rounded-xl flex items-center justify-center mb-6 transition-colors duration-300">
                 <service.icon className="w-8 h-8 text-white" />

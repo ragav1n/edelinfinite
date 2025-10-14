@@ -45,9 +45,7 @@ export default function Systems() {
     },
     {
       title: 'Edel ETFE Systems',
-      description: `GRT Radisson Blu Dome, Chennai
-A signature architectural feature blending elegance with innovation, the GRT Radisson Blu dome in Chennai showcases a hybrid Glass + ETFE skylight system engineered and executed by Edel Infinite Systems. The circular grid-shell structure integrates precision-formed steel framing with transparent ETFE membranes and high-clarity glazing panels to achieve a seamless daylight experience while maintaining optimal thermal comfort.
-Designed as the central focal point of the hotel’s arrival area, the dome exemplifies lightweight construction, optical clarity, and weather resilience—an embodiment of modern architectural engineering tailored for India’s climatic conditions.`,
+      description: `Revolutionary lightweight ETFE skylights and membranes offering exceptional light transmission, durability, and thermal performance. Our systems create stunning architectural features while providing weather protection and energy efficiency for modern buildings.`,
       images: ['/radisson_blu.png', '/Sattva Endeavor.png', '/sattva_knowledge_point_2.png', '/sattva_knowledge_point_3.png']
     },
     {
@@ -59,11 +57,6 @@ Designed as the central focal point of the hotel’s arrival area, the dome exem
       title: 'Edel Gridshell & Tensegrity',
       description: 'Both grid shell and tensegrity structures are innovative architectural and engineering designs that emphasize efficiency, aesthetics, and structural integrity. Here\u2019s a concise overview of each:',
       images: ['/sattva knowldge point.png']
-    },
-    {
-      title: 'Edel Perforated Metal Cladding',
-      description: 'Perforated metal cladding panels provide aesthetic value, sustainability and design alternatives of horizontal or vertical placement. They are used by architects for privacy, weather protection and perforation functionality while remaining strong and stable.',
-      images: ['/One place Mittal.png']
     }
   ];
 

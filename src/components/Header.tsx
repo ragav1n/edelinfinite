@@ -40,13 +40,13 @@ export default function Header({ activeSection, onNavigate }: HeaderProps) {
             <img
               src="/image.webp"
               alt="Edelinfinite Systems"
-              className="h-12 sm:h-14 w-auto object-contain group-hover:scale-105 transition-transform"
+              className="h-16 sm:h-20 w-auto object-contain group-hover:scale-105 transition-transform"
               onError={(e) => {
                 e.currentTarget.src = '/image.png';
               }}
             />
-            <div className="hidden lg:block border-l border-orange-500 pl-3 sm:pl-4">
-              <span className="text-xs sm:text-sm font-medium text-gray-700 italic">Precision in every panel</span>
+            <div className="hidden lg:block pl-3 sm:pl-4">
+              <span className="text-sm sm:text-base font-medium text-gray-700 italic">Precision in every panel</span>
             </div>
           </button>
 
@@ -55,7 +55,7 @@ export default function Header({ activeSection, onNavigate }: HeaderProps) {
               <button
                 key={item.id}
                 onClick={() => onNavigate(item.id)}
-                className={`text-sm sm:text-base font-semibold transition-colors relative group ${
+                className={`text-base sm:text-lg font-semibold transition-colors relative group ${
                   activeSection === item.id
                     ? 'text-orange-500'
                     : 'text-gray-700 hover:text-orange-500'
