@@ -256,6 +256,10 @@ export default function Contact() {
                         <p className="font-semibold">Edelinfinite GmBH</p>
                         <p>Tölzer Straße 11</p>
                         <p>82031, Grünwald</p>
+                        <p className="flex items-center gap-2">
+                          <Phone className="w-4 h-4 text-orange-500" />
+                          +4915217947463
+                        </p>
                       </div>
                     </div>
                   </div>

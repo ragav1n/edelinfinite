@@ -78,6 +78,19 @@ export default function Footer({ onNavigate }: FooterProps) {
                   080-46990561
                 </a>
               </div>
+              <div className="flex items-start gap-2">
+                <MapPin className="w-4 h-4 text-orange-500 mt-1 flex-shrink-0" />
+                <span className="text-gray-400">
+                  Tölzer Straße 11<br />
+                  82031, Grünwald, Germany
+                </span>
+              </div>
+              <div className="flex items-center gap-2">
+                <Phone className="w-4 h-4 text-orange-500 flex-shrink-0" />
+                <a href="tel:+4915217947463" className="text-gray-400 hover:text-orange-500 transition-colors">
+                  +4915217947463
+                </a>
+              </div>
               <div className="flex items-center gap-2">
                 <Mail className="w-4 h-4 text-orange-500 flex-shrink-0" />
                 <a href="mailto:info@edel-infinite.de" className="text-gray-400 hover:text-orange-500 transition-colors">

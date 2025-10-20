@@ -13,10 +13,10 @@ export default function Projects({ onNavigate }: ProjectsProps) {
       title: 'Helix Tuvilu',
       location: 'Chennai',
       status: 'Completed',
-      system: 'Edel Virtis Vertical Glazing System',
+      system: 'EDEL Virtis Vertical Glazing System',
       area: '',
       image: '/helix.png',
-      tagline: 'Edel Virtis — Vertical Precision, Defined by Light.',
+      tagline: 'EDEL Virtis — Vertical Precision, Defined by Light.',
       description: 'A refined expression of transparency and precision, the Helix Tuvilu features Edelinfinite\'s Edel Virtis system—engineered to span uninterrupted heights with seamless vertical rhythm. Designed for clarity and strength, the façade integrates slender aluminum profiles and high-performance glazing to create a luminous, modern envelope that redefines workplace architecture.'
     },
     {
