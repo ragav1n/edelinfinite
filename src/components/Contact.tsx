@@ -67,9 +67,20 @@ export default function Contact() {
 
   const departments = [
     {
+      title: 'Operations',
+      contacts: [
+        { name: 'Ravi Kumar D', email: 'ravi@edel-infinite.de', phone: '+91 95353 99389' }
+      ]
+    },
+    {
+      title: 'Board of Directors',
+      contacts: [
+        { name: 'TBD', email: '' }
+      ]
+    },
+    {
       title: 'Pre-Construction',
       contacts: [
-        { name: 'Anwar Mir', email: 'anwar.mir@edel-infinite.de' },
         { name: 'Janardhan Reddy', email: 'janardhan@edel-infinite.de' }
       ]
     },
@@ -306,12 +317,22 @@ export default function Contact() {
                   {dept.contacts.map((contact, idx) => (
                     <div key={idx}>
                       <p className="font-medium text-white">{contact.name}</p>
-                      <a
-                        href={`mailto:${contact.email}`}
-                        className="text-gray-400 hover:text-orange-500 transition-colors text-sm"
-                      >
-                        {contact.email}
-                      </a>
+                      {contact.email && (
+                        <a
+                          href={`mailto:${contact.email}`}
+                          className="block text-gray-400 hover:text-orange-500 transition-colors text-sm"
+                        >
+                          {contact.email}
+                        </a>
+                      )}
+                      {contact.phone && (
+                        <a
+                          href={`tel:${contact.phone.replace(/\s+/g, '')}`}
+                          className="block text-gray-400 hover:text-orange-500 transition-colors text-sm"
+                        >
+                          {contact.phone}
+                        </a>
+                      )}
                     </div>
                   ))}
                 </div>
