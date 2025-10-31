@@ -67,21 +67,9 @@ export default function Contact() {
 
   const departments = [
     {
-      title: 'Operations',
-      contacts: [
-        { name: 'Ravi Kumar D', email: 'ravi@edel-infinite.de', phone: '+91 95353 99389' }
-      ]
-    },
-    {
       title: 'Board of Directors',
       contacts: [
-        { name: 'TBD', email: '' }
-      ]
-    },
-    {
-      title: 'Pre-Construction',
-      contacts: [
-        { name: 'Janardhan Reddy', email: 'janardhan@edel-infinite.de' }
+        { name: 'TBP', email: '' }
       ]
     },
     {
@@ -89,6 +77,18 @@ export default function Contact() {
       contacts: [
         { name: 'Inder Kaul', email: 'inder.kaul@edel-infinite.de' },
         { name: 'Musaveer Ahmed', email: 'musaveer.ahmed@edel-infinite.de' }
+      ]
+    },
+    {
+      title: 'Engineering',
+      contacts: [
+        { name: 'Janardhan Reddy', email: 'janardhan@edel-infinite.de' }
+      ]
+    },
+    {
+      title: 'Operations',
+      contacts: [
+        { name: 'Ravi Kumar D', email: 'ravi@edel-infinite.de', phone: '+91 95353 99389' }
       ]
     }
   ];
