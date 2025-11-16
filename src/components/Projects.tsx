@@ -7,8 +7,29 @@ interface ProjectsProps {
 
 export default function Projects({ onNavigate }: ProjectsProps) {
   const [selectedProject, setSelectedProject] = useState<number | null>(null);
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
   const featuredProjects = [
+    {
+      title: 'Case Study Project ETFE',
+      location: 'New',
+      status: 'Completed',
+      system: 'EDEL ETFE System',
+      area: '',
+      image: '/Case_study _project_ETFE.png',
+      tagline: 'Innovative ETFE application showcasing architectural possibilities',
+      description: 'This case study project demonstrates the versatility and potential of the EDEL ETFE System in modern architecture. The lightweight, durable ETFE membrane creates a striking visual impact while providing excellent thermal performance and natural light diffusion. The system allows for large, column-free spans, offering architects unprecedented design freedom. The self-cleaning properties of ETFE ensure long-term performance with minimal maintenance, making it an ideal choice for sustainable building solutions.'
+    },
+    {
+      title: 'Perforated Metal Sheet – Sri Nagar',
+      location: 'Sri Nagar',
+      status: 'New',
+      system: 'EDEL Perforated Metal System',
+      area: '',
+      image: '/perf_metal.png',
+      tagline: 'Modern perforated metal façade blending form and function',
+      description: 'The Sri Nagar project features our advanced EDEL Perforated Metal System, combining aesthetic appeal with functional performance. The custom-designed perforation pattern creates dynamic light and shadow effects throughout the day while providing solar shading and privacy. The high-strength aluminum panels are durable, weather-resistant, and require minimal maintenance. The system is engineered for easy installation and long-term performance, making it an excellent choice for both new constructions and retrofits.'
+    },
     {
       title: 'Helix Tuvilu',
       location: 'Chennai',
@@ -25,7 +46,14 @@ export default function Projects({ onNavigate }: ProjectsProps) {
       status: 'Ongoing',
       system: 'EDEL Fusion Curtain Wall System',
       area: '12,000 sqm',
-      image: '/TIDCO_FINTECH_TOWER.png',
+      images: [
+        '/TIDCO_FINTECH_TOWER.png',
+        '/fintech2.png',
+        '/fintech3.png',
+        '/fintech4.png',
+        '/fintech5.png',
+        '/fintech_ongoing_2.png'
+      ],
       tagline: 'Precision, speed, and clarity — the EDEL Fusion Curtain Wall defines the future of high-rise façades.',
       description: 'Edel infinite Systems is executing one of Chennai\'s most advanced façade installations at the TIDCO Fintech Tower, deploying the next-generation EDEL Fusion Curtain Wall System across approximately 12,000 square meters of façade area.\n\nThis system has been engineered for full installation from within the building, eliminating the need for external access equipment and ensuring unmatched speed, precision, and safety. The project showcases our commitment to innovation and efficiency, setting new benchmarks for installation pace in high-rise façade construction.\n\nWith its clean vertical rhythm, high-performance glazing, and seamless integration with the building\'s architectural geometry, the EDEL Fusion system delivers a sleek, energy-efficient, and structurally robust façade — a testament to our technical excellence and execution capability on large-scale urban developments.'
     },
@@ -45,7 +73,11 @@ export default function Projects({ onNavigate }: ProjectsProps) {
       status: 'Completed',
       system: 'EDEL ETFE System',
       area: '',
-      image: '/sattva knowldge point.png',
+      images: [
+        '/sattva knowldge point.png',
+        '/sattva_knowledge_point_2.png',
+        '/sattva_knowledge_point_3.png'
+      ],
       tagline: 'Lightness, transparency, and strength — redefining architectural roofing with the EDEL ETFE System.',
       description: 'Edelinfinite Systems successfully executed the ETFE roof canopy at Sattva Knowledge Point, Bengaluru, showcasing the cutting-edge engineering and design flexibility of the EDEL ETFE System.\n\nThe large-span, lightweight structure utilizes multi-layer ETFE cushions supported on a precision-engineered steel framework, offering outstanding daylight transmission, thermal efficiency, and durability while maintaining an elegant architectural expression.\n\nEngineered for zero corrosion, minimal maintenance, and long-term performance, this installation redefines modern canopy design—combining aesthetic purity with structural innovation.\n\nThe Sattva Knowledge Point project stands as a testament to Edelinfinite\'s expertise in advanced membrane architecture, delivering high-performance solutions that merge transparency, technology, and sustainability.'
     },
@@ -75,7 +107,7 @@ export default function Projects({ onNavigate }: ProjectsProps) {
       status: 'Completed',
       system: 'EDEL Fusion Glazing System',
       area: '',
-      image: '/SNN Raj.png',
+      images: ['/SNN Raj.png', '/SNN_Raj.png'],
       tagline: 'Where structure meets rhythm — the EDEL Fusion System shaping modern architecture at SNN Raj.',
       description: 'The SNN Raj commercial façade in Bengaluru features the advanced EDEL Fusion Glazing System, combining clean geometry with precise detailing to create a dynamic architectural rhythm.\n\nEngineered for performance, speed, and seamless integration, the system merges vertical and horizontal continuity with vibrant colour contrasts — delivering both aesthetic distinction and long-term reliability.\n\nWith its refined proportions and modern composition, the project stands as a reflection of Edelinfinite\'s design intelligence and engineering clarity — transforming functional façades into architectural expressions.'
     },
@@ -98,6 +130,51 @@ export default function Projects({ onNavigate }: ProjectsProps) {
       image: '/One place Mittal.png',
       tagline: 'Fusion of form and precision — the EDEL Fusion Curtain Wall defining the architectural language of One Place.',
       description: 'The One Place project represents a new chapter in contemporary façade engineering — executed using the EDEL Fusion Curtain Wall System by Edelinfinite Systems.\n\nThis high-performance façade integrates horizontal and vertical rhythm with deep architectural fins and modular precision, creating a refined interplay of glass and structure. Designed for durability, clarity, and efficiency, the EDEL Fusion system achieves a crisp architectural balance between transparency and form.\n\nCurrently in progress, One Place embodies Edelinfinite\'s pursuit of façade innovation, merging performance-driven design with timeless visual sophistication.'
+    },
+    {
+      title: 'Lafairs',
+      location: 'Chennai',
+      status: 'Completed',
+      system: 'EDEL Virtis System',
+      area: '',
+      images: ['/Lafairs.png', '/Lafairs2.png'],
+      tagline: 'Refined engineering meets modern aesthetics — the EDEL Virtis System at Lafairs, Chennai.',
+      description: 'At Lafairs, Chennai, the Edel Virtis System stands as a symbol of refined engineering and modern architectural aesthetics. This advanced façade system was meticulously executed to deliver both elegance and performance — blending sleek design with structural precision. The installation showcases exceptional craftsmanship, achieving seamless alignment, clean sightlines, and superior material integration.\n\nEngineered to meet the highest standards of durability and visual appeal, the Edel Virtis System enhances the building\'s contemporary character while ensuring long-term reliability. Its minimalistic yet striking appearance complements the architectural intent of Lafairs, creating a distinctive façade that reflects sophistication and technical excellence.'
+    },
+    {
+      title: 'Tamil Nadu Housing Board',
+      location: 'Chennai',
+      status: 'Ongoing',
+      system: 'EDEL Vertis Façade System',
+      area: '10,500 sqm',
+      image: '/TN_housing_board.png',
+      tagline: 'Modern glass box design with elegant vertical fins — redefining urban architecture in Chennai.',
+      description: 'The Tamil Nadu Housing Board building in Chennai features a sleek Edel Vertis glass façade designed as a modern glass box with elegant vertical fins. Spanning over 10,500 sqm, the system delivers a seamless aesthetic with excellent structural performance and solar control. This project highlights Edel Infinite\'s precision engineering and commitment to creating contemporary, high-performance façades.'
+    },
+    {
+      title: 'Coimbatore Library',
+      location: 'Coimbatore',
+      status: 'Upcoming',
+      system: 'EDEL Vertis Façade Concept',
+      area: '',
+      image: '/Coimbatore_Library.png',
+      tagline: 'Twisted vertical fins creating dynamic light play — redefining library architecture in Coimbatore.',
+      description: 'The Coimbatore Library showcases a distinctive façade executed with the Edel Vertis concept, featuring twisted vertical fins that create a dynamic play of light and shadow throughout the day. The innovative design blends functionality with visual movement, enhancing both energy efficiency and architectural expression. This project exemplifies Edel Infinite\'s creative approach to façade engineering, where precision detailing meets bold contemporary design.'
+    },
+    {
+      title: 'GRT ETFE Dome',
+      location: 'Radisson Blu, Chennai',
+      status: 'Completed',
+      system: 'ETFE Membrane System',
+      area: '',
+      images: [
+        '/radisson_blu.png',
+        '/radisson_blu2.png',
+        '/radisson_blu3.png',
+        '/radisson_blu4.png'
+      ],
+      tagline: 'A striking example of architectural innovation with ETFE membrane technology',
+      description: 'The ETFE Dome installed at Radisson Blu, Chennai, is a striking example of architectural innovation and precision engineering. Designed and executed for GRT Hotels, the dome features a lightweight ETFE (Ethylene Tetrafluoroethylene) membrane system that offers exceptional transparency, durability, and aesthetic appeal.\n\nThis state-of-the-art structure allows abundant natural light to illuminate the interiors while providing superior thermal performance and weather resistance. The installation reflects meticulous planning and flawless execution, harmoniously integrating modern materials with elegant design.\n\nStanding as a visual centrepiece of the property, the ETFE Dome at Radisson Blu exemplifies a perfect balance of form, function, and finesse — redefining contemporary architectural expression.'
     }
   ];
 
@@ -127,14 +204,22 @@ export default function Projects({ onNavigate }: ProjectsProps) {
           {featuredProjects.map((project, index) => (
             <div
               key={index}
-              onClick={() => setSelectedProject(index)}
+              onClick={() => {
+                setSelectedProject(index);
+                setCurrentImageIndex(0);
+              }}
               className="group relative overflow-hidden rounded-xl bg-white shadow-md hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 cursor-pointer"
             >
               <div className="aspect-[4/3] overflow-hidden">
                 <img
-                  src={project.image}
+                  src={'images' in project ? project.images[0] : project.image}
                   alt={project.title}
                   className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                  onError={(e) => {
+                    // Fallback in case image fails to load
+                    const target = e.target as HTMLImageElement;
+                    target.src = '/placeholder-project.jpg';
+                  }}
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent" />
               </div>
@@ -170,19 +255,70 @@ export default function Projects({ onNavigate }: ProjectsProps) {
         {selectedProject !== null && (
           <div className="fixed inset-0 z-50 flex items-center justify-center p-2 sm:p-4 bg-black/80 backdrop-blur-sm" onClick={() => setSelectedProject(null)}>
             <div className="relative bg-white rounded-xl sm:rounded-2xl w-full max-w-[95vw] sm:max-w-2xl md:max-w-4xl lg:max-w-5xl max-h-[90vh] overflow-y-auto shadow-2xl" onClick={(e) => e.stopPropagation()}>
-              <button
-                onClick={() => setSelectedProject(null)}
-                className="sticky top-2 sm:top-4 float-right right-2 sm:mr-4 z-10 bg-black/50 hover:bg-black text-white p-2 rounded-full transition-colors"
-              >
-                <X className="w-5 h-5 sm:w-6 sm:h-6" />
-              </button>
-              
               <div className="relative overflow-hidden rounded-t-xl bg-gray-900">
-                <img
-                  src={featuredProjects[selectedProject].image}
-                  alt={featuredProjects[selectedProject].title}
-                  className="w-full h-auto max-h-[40vh] sm:max-h-[50vh] md:max-h-[65vh] object-cover"
-                />
+                <button
+                  onClick={() => setSelectedProject(null)}
+                  className="absolute top-4 right-4 z-10 bg-black/50 hover:bg-black text-white p-2 rounded-full transition-colors"
+                >
+                  <X className="w-5 h-5 sm:w-6 sm:h-6" />
+                </button>
+                <div className="relative w-full aspect-[4/3] overflow-hidden">
+                  {('images' in featuredProjects[selectedProject] ? featuredProjects[selectedProject].images : [featuredProjects[selectedProject].image]).map((img, idx) => (
+                    <img
+                      key={idx}
+                      src={img}
+                      alt={`${featuredProjects[selectedProject].title} - Image ${idx + 1}`}
+                      className={`absolute inset-0 w-full h-full object-contain transition-opacity duration-500 ${idx === currentImageIndex ? 'opacity-100' : 'opacity-0'}`}
+                    />
+                  ))}
+                  
+                  {/* Navigation Arrows */}
+                  {('images' in featuredProjects[selectedProject] && featuredProjects[selectedProject].images.length > 1) && (
+                    <>
+                      <button 
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          setCurrentImageIndex(prev => (prev === 0 ? featuredProjects[selectedProject].images.length - 1 : prev - 1));
+                        }}
+                        className="absolute left-4 top-1/2 -translate-y-1/2 bg-black/50 text-white p-2 rounded-full hover:bg-black/70 transition-colors z-10"
+                        aria-label="Previous image"
+                      >
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                          <path d="M15 18l-6-6 6-6"/>
+                        </svg>
+                      </button>
+                      <button 
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          setCurrentImageIndex(prev => (prev === featuredProjects[selectedProject].images.length - 1 ? 0 : prev + 1));
+                        }}
+                        className="absolute right-4 top-1/2 -translate-y-1/2 bg-black/50 text-white p-2 rounded-full hover:bg-black/70 transition-colors z-10"
+                        aria-label="Next image"
+                      >
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                          <path d="M9 18l6-6-6-6"/>
+                        </svg>
+                      </button>
+                    </>
+                  )}
+                  
+                  {/* Dots Navigation */}
+                  {('images' in featuredProjects[selectedProject] && featuredProjects[selectedProject].images.length > 1) && (
+                    <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2 z-10">
+                      {featuredProjects[selectedProject].images.map((_, idx) => (
+                        <button
+                          key={idx}
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            setCurrentImageIndex(idx);
+                          }}
+                          className={`w-2 h-2 rounded-full transition-all ${idx === currentImageIndex ? 'bg-orange-500 w-6' : 'bg-white/50'}`}
+                          aria-label={`View image ${idx + 1}`}
+                        />
+                      ))}
+                    </div>
+                  )}
+                </div>
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
                 <div className="absolute bottom-0 left-0 right-0 p-4 sm:p-6 md:p-8 text-white">
                   <div className="inline-block bg-orange-500 text-white text-xs sm:text-sm font-bold px-3 sm:px-4 py-1 sm:py-2 rounded-full mb-3 sm:mb-4">

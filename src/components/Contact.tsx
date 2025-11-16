@@ -67,12 +67,6 @@ export default function Contact() {
 
   const departments = [
     {
-      title: 'Board of Directors',
-      contacts: [
-        { name: 'TBP', email: '' }
-      ]
-    },
-    {
       title: 'Sales & Marketing',
       contacts: [
         { name: 'Inder Kaul', email: 'inder.kaul@edel-infinite.de' },
@@ -88,7 +82,7 @@ export default function Contact() {
     {
       title: 'Operations',
       contacts: [
-        { name: 'Ravi Kumar D', email: 'ravi@edel-infinite.de', phone: '+91 95353 99389' }
+        { name: 'Ravi Kumar D', email: 'ravi@edel-infinite.de' }
       ]
     }
   ];

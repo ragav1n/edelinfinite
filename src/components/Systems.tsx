@@ -1,62 +1,48 @@
-import { ArrowRight, X, ChevronLeft, ChevronRight } from 'lucide-react';
+import { ChevronDown, ChevronUp } from 'lucide-react';
 import { useState } from 'react';
 
 interface System {
   title: string;
   description: string;
-  images: string[];
 }
 
 export default function Systems() {
-  const [selectedSystem, setSelectedSystem] = useState<System | null>(null);
-  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const [expandedSystem, setExpandedSystem] = useState<number | null>(null);
+  const [hoveredSystem, setHoveredSystem] = useState<number | null>(null);
 
-  const openSlideshow = (system: System) => {
-    setSelectedSystem(system);
-    setCurrentImageIndex(0);
-  };
-
-  const closeSlideshow = () => {
-    setSelectedSystem(null);
-    setCurrentImageIndex(0);
-  };
-
-  const nextImage = () => {
-    if (selectedSystem && currentImageIndex < selectedSystem.images.length - 1) {
-      setCurrentImageIndex(currentImageIndex + 1);
+  const toggleExpand = (index: number) => {
+    // Close if clicking the same item, otherwise open the clicked one
+    setExpandedSystem(expandedSystem === index ? null : index);
+    
+    // Force a reflow to ensure smooth animation
+    if (expandedSystem !== index) {
+      const element = document.getElementById(`system-${index}`);
+      if (element) {
+        element.getBoundingClientRect();
+      }
     }
   };
 
-  const prevImage = () => {
-    if (currentImageIndex > 0) {
-      setCurrentImageIndex(currentImageIndex - 1);
-    }
-  };
   const systems = [
     {
       title: 'Edel Fusion Curtainwall',
-      description: 'A next-generation unit wise Edel Fusion Curtain Wall system engineered for complete installation from the building side, ensuring a seamless and uninterrupted external façade. Designed to be loaded from within the structure, it offers unmatched speed, safety, and precision—eliminating the need for access equipment and perfectly suited for high-rise or restricted-access projects.',
-      images: ['/TIDCO_FINTECH_TOWER.png', '/fintech_ongoing_2.png']
+      description: 'A next-generation unit wise Edel Fusion Curtain Wall system engineered for complete installation from the building side, ensuring a seamless and uninterrupted external façade. Designed to be loaded from within the structure, it offers unmatched speed, safety, and precision—eliminating the need for access equipment and perfectly suited for high-rise or restricted-access projects.'
     },
     {
       title: 'Edel Virtis',
-      description: 'High-precision vertical mullions with integrated fins & slim silicone joints for Shopfronts, Lobby Facades and Canopies.',
-      images: ['/TIDEL IT PARK.png']
+      description: 'High-precision vertical mullions with integrated fins & slim silicone joints for Shopfronts, Lobby Facades and Canopies.'
     },
     {
       title: 'Edel ETFE Systems',
-      description: `Revolutionary lightweight ETFE skylights and membranes offering exceptional light transmission, durability, and thermal performance. Our systems create stunning architectural features while providing weather protection and energy efficiency for modern buildings.`,
-      images: ['/radisson_blu.png', '/Sattva Endeavor.png', '/sattva_knowledge_point_2.png', '/sattva_knowledge_point_3.png']
+      description: 'Revolutionary lightweight ETFE skylights and membranes offering exceptional light transmission, durability, and thermal performance. Our systems create stunning architectural features while providing weather protection and energy efficiency for modern buildings.'
     },
     {
       title: 'Edel Timber Holz',
-      description: 'Timber facades are a standout design feature, infusing any building with the warmth and character of natural wood. Its rich colors, distinctive grain and tactile texture create a timeless, welcoming aesthetic. By bringing nature into the built environment, timber lends every facade a calm, inviting presence and enduring appeal.',
-      images: ['/SNN Raj.png', '/timber_1.png', '/timber_2.png', '/timber_3.png', '/timber_4.png']
+      description: 'Timber facades are a standout design feature, infusing any building with the warmth and character of natural wood. Its rich colors, distinctive grain and tactile texture create a timeless, welcoming aesthetic. By bringing nature into the built environment, timber lends every facade a calm, inviting presence and enduring appeal.'
     },
     {
       title: 'Edel Gridshell & Tensegrity',
-      description: 'Both grid shell and tensegrity structures are innovative architectural and engineering designs that emphasize efficiency, aesthetics, and structural integrity. Here\u2019s a concise overview of each:',
-      images: ['/sattva knowldge point.png']
+      description: 'Both grid shell and tensegrity structures are innovative architectural and engineering designs that emphasize efficiency, aesthetics, and structural integrity. Here\u2019s a concise overview of each:'
     }
   ];
 
@@ -73,109 +59,81 @@ export default function Systems() {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
-          {systems.map((system, index) => (
-            <div
-              key={index}
-              className="group relative overflow-hidden rounded-xl bg-gray-900 hover:shadow-2xl transition-all duration-500 hover:-translate-y-2"
-            >
-              <div className="aspect-[4/3] overflow-hidden">
-                <img
-                  src={system.images[0]}
-                  alt={system.title}
-                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-6xl mx-auto px-4" style={{ gridAutoFlow: 'dense' }}>
+          {systems.map((system, index) => {
+            const isExpanded = expandedSystem === index;
+            const isHovered = hoveredSystem === index;
+            
+            return (
+              <div
+                id={`system-${index}`}
+                key={index}
+                className="relative group rounded-2xl overflow-hidden transition-all duration-300 ease-out"
+                onMouseEnter={() => setHoveredSystem(index)}
+                onMouseLeave={() => setHoveredSystem(null)}
+                style={{
+                  transitionProperty: 'all',
+                  transitionDuration: '300ms',
+                  transitionTimingFunction: 'cubic-bezier(0.4, 0, 0.2, 1)'
+                }}
+              >
+                <div 
+                  className={`absolute inset-0 bg-gradient-to-br from-gray-800 to-gray-900 transition-opacity duration-300 ${
+                    isHovered ? 'opacity-100' : 'opacity-90'
+                  }`}
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent opacity-90" />
-                {system.images.length > 1 && (
-                  <div className="absolute top-4 right-4 bg-black/70 text-white px-2 py-1 rounded text-xs">
-                    +{system.images.length - 1} more
-                  </div>
-                )}
-              </div>
+                
+                <div className="relative z-10 p-8">
+                  <button
+                    onClick={() => toggleExpand(index)}
+                    className="w-full text-left focus:outline-none group"
+                  >
+                    <div className="flex justify-between items-start">
+                      <h3 className={`text-2xl font-bold text-white mb-4 transition-all duration-300 ${
+                        isExpanded ? 'text-3xl mb-6' : 'group-hover:text-orange-400'
+                      }`}>
+                        {system.title}
+                        <div className={`w-16 h-0.5 bg-orange-500 mt-3 transition-all duration-500 ${
+                          isExpanded ? 'w-24 bg-amber-400' : 'group-hover:w-20 group-hover:bg-amber-400'
+                        }`} />
+                      </h3>
+                      <span className={`p-2 rounded-full transition-all duration-300 ${
+                        isExpanded 
+                          ? 'bg-amber-400/10 text-amber-400 -rotate-180' 
+                          : 'bg-gray-800 text-gray-400 group-hover:bg-gray-700 group-hover:text-orange-400'
+                      }`}>
+                        {isExpanded ? (
+                          <ChevronUp className="w-5 h-5" />
+                        ) : (
+                          <ChevronDown className="w-5 h-5" />
+                        )}
+                      </span>
+                    </div>
+                  </button>
 
-              <div className="absolute bottom-0 left-0 right-0 p-6">
-                <h3 className="text-2xl font-bold text-white mb-3 group-hover:text-orange-500 transition-colors">
-                  {system.title}
-                </h3>
-                <p className="text-gray-300 text-sm leading-relaxed mb-4">
-                  {system.description}
-                </p>
-                <button
-                  onClick={() => openSlideshow(system)}
-                  className="inline-flex items-center gap-2 text-orange-500 font-semibold text-sm group-hover:gap-3 transition-all"
-                >
-                  Learn More
-                  <ArrowRight className="w-4 h-4" />
-                </button>
+                  <div
+                    className={`overflow-hidden transition-all duration-300 ease-in-out ${
+                      isExpanded ? 'max-h-[500px] opacity-100' : 'max-h-0 opacity-0'
+                    }`}
+                    style={{
+                      transitionProperty: 'max-height, opacity',
+                      transitionDuration: '300ms',
+                      transitionTimingFunction: 'cubic-bezier(0.4, 0, 0.2, 1)'
+                    }}
+                  >
+                    <div className="pt-2 pb-6">
+                      <div className="h-px bg-gradient-to-r from-transparent via-gray-700 to-transparent mb-6" />
+                      <p className="text-gray-300 text-lg leading-relaxed">
+                        {system.description}
+                      </p>
+                    </div>
+                  </div>
+                </div>
               </div>
-            </div>
-          ))}
+            );
+          })}
         </div>
       </div>
-
-      {/* Image Slideshow Modal */}
-      {selectedSystem && (
-        <div className="fixed inset-0 bg-black bg-opacity-90 flex items-center justify-center z-50 p-2 sm:p-4">
-          <div className="relative w-full max-w-sm sm:max-w-md md:max-w-2xl lg:max-w-4xl max-h-full">
-            {/* Close Button */}
-            <button
-              onClick={closeSlideshow}
-              className="absolute -top-2 -right-2 sm:top-4 sm:right-4 text-white hover:text-orange-500 transition-colors z-10 bg-black/50 rounded-full p-2 sm:p-3"
-            >
-              <X className="w-6 h-6 sm:w-8 sm:h-8" />
-            </button>
-
-            {/* Main Image */}
-            <div className="relative">
-              <img
-                src={selectedSystem.images[currentImageIndex]}
-                alt={`${selectedSystem.title} - Image ${currentImageIndex + 1}`}
-                className="w-full h-auto max-h-[60vh] sm:max-h-[70vh] object-contain rounded-lg"
-              />
-
-              {/* Navigation Arrows */}
-              {selectedSystem.images.length > 1 && (
-                <>
-                  <button
-                    onClick={prevImage}
-                    disabled={currentImageIndex === 0}
-                    className="absolute left-2 sm:left-4 top-1/2 transform -translate-y-1/2 text-white hover:text-orange-500 transition-colors disabled:opacity-50 disabled:cursor-not-allowed bg-black/50 rounded-full p-2 sm:p-3"
-                  >
-                    <ChevronLeft className="w-6 h-6 sm:w-8 sm:h-8" />
-                  </button>
-                  <button
-                    onClick={nextImage}
-                    disabled={currentImageIndex === selectedSystem.images.length - 1}
-                    className="absolute right-2 sm:right-4 top-1/2 transform -translate-y-1/2 text-white hover:text-orange-500 transition-colors disabled:opacity-50 disabled:cursor-not-allowed bg-black/50 rounded-full p-2 sm:p-3"
-                  >
-                    <ChevronRight className="w-6 h-6 sm:w-8 sm:h-8" />
-                  </button>
-                </>
-              )}
-            </div>
-
-            {/* Image Counter */}
-            <div className="text-center mt-3 sm:mt-4 text-white text-sm sm:text-base">
-              {currentImageIndex + 1} of {selectedSystem.images.length}
-            </div>
-
-            {/* Thumbnail Navigation */}
-            {selectedSystem.images.length > 1 && (
-              <div className="flex justify-center gap-2 sm:gap-3 mt-3 sm:mt-4">
-                {selectedSystem.images.map((_, index) => (
-                  <button
-                    key={index}
-                    onClick={() => setCurrentImageIndex(index)}
-                    className={`w-4 h-4 sm:w-5 sm:h-5 rounded-full transition-colors ${
-                      index === currentImageIndex ? 'bg-orange-500' : 'bg-white/50'
-                    }`}
-                  />
-                ))}
-              </div>
-            )}
-          </div>
-        </div>
-      )}
     </section>
   );
 }
