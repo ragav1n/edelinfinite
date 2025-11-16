@@ -2,8 +2,28 @@ import { Mail, Phone, MapPin, Send, Linkedin, Facebook, Twitter, Instagram } fro
 import { useState } from 'react';
 import emailjs from '@emailjs/browser';
 
+interface ContactInfo {
+  name: string;
+  email: string;
+  phone: string;
+  company: string;
+  subject: string;
+  message: string;
+}
+
+interface DepartmentContact {
+  name: string;
+  email: string;
+  phone?: string;
+}
+
+interface Department {
+  title: string;
+  contacts: DepartmentContact[];
+}
+
 export default function Contact() {
-  const [formData, setFormData] = useState({
+  const [formData, setFormData] = useState<ContactInfo>({
     name: '',
     email: '',
     phone: '',
@@ -15,22 +35,28 @@ export default function Contact() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
 
+  // Subject options for the contact form
+  const subjectOptions = [
+    { value: 'General Inquiry', label: 'General Inquiry' },
+    { value: 'Project Consultation', label: 'Project Consultation' },
+    { value: 'Get a Quotation', label: 'Get a Quotation' },
+    { value: 'Careers', label: 'Careers' }
+  ];
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
     setSubmitStatus('idle');
 
-    const env = typeof process !== 'undefined' ? process.env : {};
-    const serviceId = env.REACT_APP_EMAILJS_SERVICE_ID;
-    const templateId = env.REACT_APP_EMAILJS_TEMPLATE_ID;
-    const publicKey = env.REACT_APP_EMAILJS_PUBLIC_KEY;
-
-    if (!serviceId || !templateId || !publicKey) {
-      console.error('Missing EmailJS configuration. Please check your environment variables.');
-      setSubmitStatus('error');
-      setIsSubmitting(false);
-      return; // Early return for missing config
-    }
+    // Hardcoded EmailJS configuration
+    const serviceId = 'service_def761e';
+    const templateId = 'template_c33v6x5';
+    const publicKey = 'As8uErmmhJ9a-_HB4';
+    
+    // Use the selected subject directly since values now match the display text
+    const selectedSubject = formData.subject;
+    
+    console.log('Sending email with config:', { serviceId, templateId, subject: selectedSubject });
 
     try {
       await emailjs.send(
@@ -41,7 +67,7 @@ export default function Contact() {
           from_email: formData.email,
           phone: formData.phone,
           company: formData.company,
-          subject: formData.subject,
+          subject: selectedSubject,
           message: formData.message,
         },
         publicKey
@@ -65,24 +91,40 @@ export default function Contact() {
     }));
   };
 
-  const departments = [
+  const departments: Department[] = [
     {
       title: 'Sales & Marketing',
       contacts: [
-        { name: 'Inder Kaul', email: 'inder.kaul@edel-infinite.de' },
-        { name: 'Musaveer Ahmed', email: 'musaveer.ahmed@edel-infinite.de' }
+        { 
+          name: 'Inder Kaul', 
+          email: 'inder.kaul@edel-infinite.de',
+          phone: '' 
+        },
+        { 
+          name: 'Musaveer Ahmed', 
+          email: 'musaveer.ahmed@edel-infinite.de',
+          phone: ''
+        }
       ]
     },
     {
       title: 'Engineering',
       contacts: [
-        { name: 'Janardhan Reddy', email: 'janardhan@edel-infinite.de' }
+        { 
+          name: 'Janardhan Reddy', 
+          email: 'janardhan@edel-infinite.de',
+          phone: ''
+        }
       ]
     },
     {
       title: 'Operations',
       contacts: [
-        { name: 'Ravi Kumar D', email: 'ravi@edel-infinite.de' }
+        { 
+          name: 'Ravi Kumar D', 
+          email: 'ravi@edel-infinite.de',
+          phone: ''
+        }
       ]
     }
   ];
@@ -102,7 +144,7 @@ export default function Contact() {
 
         <div className="grid lg:grid-cols-3 gap-8 mb-16 items-stretch">
           <div className="lg:col-span-2 flex flex-col">
-            <h3 className="text-2xl font-bold text-black mb-8">Send us a Message</h3>
+            <h3 className="text-2xl font-bold text-black mb-4">Send us a Message</h3>
 
             {submitStatus === 'success' && (
               <div className="bg-green-50 border border-green-200 text-green-800 px-6 py-4 rounded-lg mb-6">
@@ -190,10 +232,11 @@ export default function Contact() {
                   className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-orange-500 focus:ring-2 focus:ring-orange-200 outline-none transition-all"
                 >
                   <option value="">Select a subject</option>
-                  <option value="general">General Inquiry</option>
-                  <option value="project">Project Consultation</option>
-                  <option value="careers">Careers</option>
-                  <option value="support">Technical Support</option>
+                  {subjectOptions.map((option) => (
+                    <option key={option.value} value={option.value}>
+                      {option.label}
+                    </option>
+                  ))}
                 </select>
               </div>
 
@@ -247,7 +290,9 @@ export default function Contact() {
                         <p>BDS Garden – Bangalore 560077</p>
                         <p className="flex items-center gap-2">
                           <Phone className="w-4 h-4 text-orange-500" />
-                          080-46990561
+                          <a href="tel:08046990561" className="hover:text-orange-500 transition-colors">
+                            080-46990561
+                          </a>
                         </p>
                       </div>
                     </div>
@@ -263,7 +308,9 @@ export default function Contact() {
                         <p>82031, Grünwald</p>
                         <p className="flex items-center gap-2">
                           <Phone className="w-4 h-4 text-orange-500" />
-                          +4915217947463
+                          <a href="tel:+4915217947463" className="hover:text-orange-500 transition-colors">
+                            +49 152 17947463
+                          </a>
                         </p>
                       </div>
                     </div>

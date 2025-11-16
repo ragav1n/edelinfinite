@@ -7,10 +7,10 @@ export default defineConfig({
   server: {
     host: true,
     port: 5173,
-    hmr: false,           // disables HMR
+    hmr: false,
     allowedHosts: [
-      'unentertaining-transitionary-jonathon.ngrok-free.dev', // your ngrok URL
-      'localhost',       // always include localhost
+      'unentertaining-transitionary-jonathon.ngrok-free.dev',
+      'localhost',
     ],
   },
   optimizeDeps: {

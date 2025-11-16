@@ -30,7 +30,7 @@ export default function Systems() {
     },
     {
       title: 'Edel Virtis',
-      description: 'High-precision vertical mullions with integrated fins & slim silicone joints for Shopfronts, Lobby Facades and Canopies.'
+      description: 'The Edel Virtis System redefines modern façade design with its single continuous membrane capable of spanning remarkable vertical heights without horizontal interruptions. This innovation delivers a seamless glass surface that enhances transparency and architectural elegance while maintaining superior structural integrity.\n\nDesigned for projects demanding both performance and purity of form, the system eliminates transoms to create a clean vertical flow, optimizing natural light and visual continuity. With its precision engineering and minimal detailing, Edel Virtis stands as the perfect fusion of aesthetic simplicity and technical excellence.'
     },
     {
       title: 'Edel ETFE Systems',
